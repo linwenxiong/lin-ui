@@ -1,7 +1,7 @@
-import LScroll from "./src/LScroll.vue"
+import LinScroll from "./src/index.vue"
 import type { App } from 'vue';
-LScroll.install = (app: App) => {  
-  // 组件名会以文件名命名
-  app.component(LScroll.__name || 'LScroll', LScroll)
+LinScroll.name = "LinScroll"
+LinScroll.install = (app: App) => {  
+  app.component(LinScroll.name as string, LinScroll)
 }
-export default LScroll
+export default LinScroll

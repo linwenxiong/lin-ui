@@ -26,7 +26,7 @@ export default defineConfig({
       // fileName: 'index',
       fileName: (format)=> `lin-ui-${format}.js`,
       formats: ['es', 'umd'] , //指定多种格式可以让你的库在不同环境中都能使用：
-      cssFileName: 'styles'
+      cssFileName: 'lin-ui-styles'
     },
     rollupOptions: { // 覆盖掉Vite 的默认 Rollup 行为。
       external: ['vue'],

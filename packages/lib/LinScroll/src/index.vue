@@ -27,7 +27,21 @@ const props = defineProps({
     default: undefined
   }
 });
+function initIscroll() {
+  let iscrolls = null;
+  if(props.keys !== undefined) {
+    iscrolls = new window.IScroll(`#iscroll${props.keys}`, { keyBindings: true, probeType: props.probeType });
+  } else {
+    console.warn('iscroll组件缺少keys字段!');
+  }
+  emit('onReady', iscrolls);
+  return iscrolls;
+}
+
 onMounted(()=>{
-  console.log(props)
+  props.isAutoInit && initIscroll();
 })
 </script>
+<style scoped>
+@import url(./index.scss)
+</style>

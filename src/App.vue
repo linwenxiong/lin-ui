@@ -1,11 +1,11 @@
 
 
 <template>
-  <LinScroll :keys="2" @onReady="onReady" :probeType="2">
+  <lin-scroll :keys="2" @onReady="onReady" :probeType="2">
     <ul>
       <li @click="refresh">点我恢复</li>
-      <li><LScroll><h1>2222222222222</h1></LScroll></li>
-      <li><LLoading></LLoading></li>
+      <li><h1>lin-scroll</h1></li>
+     
       <li>122222</li>
       <li>122222</li>
       <li>122222</li>
@@ -48,11 +48,9 @@
       <li>122222</li>
       <li>122222</li>
     </ul>
-  </LinScroll>
+  </lin-scroll>
 </template>
 <script setup lang="ts">
-import LinScroll from './components/lin-scroll/lin-scroll.vue'
-import './components/lin-scroll/utils/iscroll-probe'
 // let refresh
 let _scroll: any = null
 function onReady(scroll: any) {
