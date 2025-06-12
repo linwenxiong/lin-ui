@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },// 由于我们是运行在浏览器中的组件，所以只需要关心tsconfig.app.json文件。 
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "types": []
+  }
+}
