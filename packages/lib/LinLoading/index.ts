@@ -1,7 +1,8 @@
-import LLoading from "./src/LLoading.vue"
+import LinLoading from "./src/index.vue"
 import type { App } from 'vue';
-LLoading.install = (app: App) => {  
+LinLoading.name = "LinLoading"
+LinLoading.install = (app: App) => {  
   // 组件名会以文件名命名
-  app.component(LLoading.__name || "LLoading", LLoading)
+  app.component(LinLoading.name || "LinLoading", LinLoading)
 }
-export default LLoading
+export default LinLoading

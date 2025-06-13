@@ -15,3 +15,5 @@ export default {
     })
   }
 }
+export type { IScrollInstance } from "@/lib/LinScroll/src/types" // 导出类型文件
+// export type { XXX } from "@/lib/XXXX/src/types"

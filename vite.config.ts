@@ -9,7 +9,7 @@ export default defineConfig({
     vue(),
     dts({
       tsconfigPath: 'tsconfig.app.json', //--问题点1-- ：如果打包出来的类型文件为空，这里需要添加上实际的tsconfig文件；
-      // outDir: 'dist/types',
+      outDir: 'dist/types',
       insertTypesEntry: true
     })
   ],
