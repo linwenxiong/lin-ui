@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "lindash": "^1.0.4",
     "sass-embedded": "^1.89.1",
     "vite-plugin-dts": "^4.5.4",
-    "vue": "^3.5.13"
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@types/node": "^24.0.1",
