@@ -11,8 +11,9 @@ const print = new lds.Print()
 const print2 = new lds.Print()
 function start() {
     let switchs = true
-    let cacheArr:string[] = []
-    let banshuArr:string[] = []
+    let cacheArr = []
+      
+
     let cache = {
         开场: '',
         板书: '',
@@ -28,17 +29,37 @@ function start() {
 
     print.printChars({
         animte: true,
-        second: 169, // 多少秒输出完整个句子
+        second: 9, // 多少秒输出完整个句子
         text: streamInfo,
         callback: (result: string) => {
-            getLabelConent(result)
+            tempstr += result
+            str.value = tempstr
+            if (result === "[") { // 1 排查是否有括号
+                label = ''
+                pchaloading = true
+            }
+            if (pchaloading) {
+                if (label.length === 4) {
+                    if (label.includes("[开场]")) {
+                        cache.开场 += result
+                    } else if (label.includes("[板书]")) {
+                        cache.板书 += result
+                    } else if (label.includes("[讲稿]")) {
+                        cache.讲稿 += result
+                    } else {
+                        cache.其他 += result
+                    }
+                }
+                else {
+                    label += result
+                }
+            } else {
+                cache.其他 += result
+            }
         }
     })
 
-   setInterval(() => {
-    console.log("===============666-", banshuArr)
-   }, 1000);
-
+   
     async function printstring() {
         const fenduanStr = cache[index]
         await printbanshu(fenduanStr)
@@ -46,61 +67,6 @@ function start() {
         printstring()
     }
 }
-
-let findSwitch = false // 排查开关
-let theLabel = '' // 当前的label
-let bookConten = '' // 板书内容
-let speakConten = '' // 讲稿内容
-let _bookContens:string[] = [] // 板书内容
-let _speakContens:string[] = [] // 讲稿内容
-
-let bookIndex = 0 // 板书indx
-let speakIndex = 0 // 讲稿indx
-
-const streamJson: any = [] // 总数组
-
-function getLabelConent(streamtext: string) { // 问题1：假设板书内容比较长，遇到下一个[才去push的话，就没有办法做到时效性的流式输出内容
-    console.log("当前的内容:板书：", streamJson)
-     
-        if (streamtext === "[") { // 1 排查是否有括号
-            if(bookConten) {
-            bookIndex ++
-            speakIndex = 0
-        }
-        if(speakConten) {
-            speakIndex++
-        }
-        findSwitch = true
-        theLabel = ''
-        bookConten = ''
-        speakConten = ''
-    }
-    if(theLabel.length === 4 ) {
-        switch(theLabel) {
-            case "[板书]":
-            bookConten += streamtext
-            streamJson[bookIndex] = {
-                "板书": bookConten,
-                "讲稿": []
-            }
-            break;
-            case "[讲稿]":
-            speakConten += streamtext
-            _speakContens[speakIndex] = speakConten
-            streamJson[bookIndex-1]["讲稿"] = [
-                ..._speakContens
-            ]
-            break;
-        }
-        return
-    }
-    if (findSwitch) {
-        theLabel += streamtext
-    }
-}
-
-
-
 
 function poxys() {
 
